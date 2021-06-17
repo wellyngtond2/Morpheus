@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Morpheus.DataContracts</name>
+    </assembly>
+    <members>
+        <member name="M:Morpheus.DataContracts.Base.OperationResponse.Ok``1(``0)">
+            <summary>
+            Create instance of <see cref="T:Morpheus.DataContracts.Base.OperationResponse"/> with property State "Ok".
+            </summary>
+            <returns>Instance of <see cref="T:Morpheus.DataContracts.Base.OperationResponse"/></returns>
+        </member>
+    </members>
+</doc>

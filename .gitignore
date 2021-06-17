@@ -3,3 +3,16 @@
 ################################################################################
 
 /.net core/Morpheus.Api/src/Morpheus.Api/bin/Debug/net5.0
+/.net core/Morpheus.Api/Morpheus.Data/obj
+/.net core/Morpheus.Api/.vs/Morpheus/v16
+/.net core/Morpheus.Api/src/Morpheus.Api/obj
+/.net core/Morpheus.Api/src/Morpheus.Infrastructure/obj
+/.net core/Morpheus.Api/src/Morpheus.Infrastructure/bin/Debug/net5.0
+/.net core/Morpheus.Api/src/Morpheus.DataContracts/obj
+/.net core/Morpheus.Api/src/Morpheus.DataContracts/bin/Debug/net5.0
+/.net core/Morpheus.Api/src/Morpheus.Data/obj
+/.net core/Morpheus.Api/src/Morpheus.Data/bin/Debug/net5.0
+/.net core/Morpheus.Api/src/Morpheus.Core/obj
+/.net core/Morpheus.Api/src/Morpheus.Core/bin/Debug/net5.0
+/.net core/Morpheus.Api/src/Morpheus.Common/obj
+/.net core/Morpheus.Api/src/Morpheus.Common/bin/Debug/net5.0
