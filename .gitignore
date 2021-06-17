@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.net core/Morpheus.Api/src/Morpheus.Api/bin/Debug/net5.0
