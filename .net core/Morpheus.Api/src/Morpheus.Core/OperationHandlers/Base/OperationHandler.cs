@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Morpheus.Common.Models;
 using Morpheus.Core.Repositories;
 using Morpheus.DataContracts.Base;
@@ -15,11 +16,13 @@ namespace Morpheus.Core.OperationHandlers.Base
         where TRequest : OperationRequest<TResponse>
         where TResponse : OperationResponse, new()
     {
-        private readonly IUnitOfWork _unitOfWork;
+        protected IUnitOfWork _unitOfWork { get; }
+        protected IMapper _mapper { get; }
 
-        protected OperationHandler(IUnitOfWork unitOfWork)
+        protected OperationHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
@@ -28,7 +31,7 @@ namespace Morpheus.Core.OperationHandlers.Base
 
             try
             {
-                var validations = ValidateOperation(request);
+                var validations = await ValidateOperation(request);
 
                 if (validations.Any())
                 {
@@ -67,7 +70,7 @@ namespace Morpheus.Core.OperationHandlers.Base
 
         protected abstract Task<TResponse> ProcessOperationAsync(TRequest request);
 
-        protected abstract ICollection<Report> ValidateOperation(TRequest request);
+        protected abstract Task<ICollection<Report>> ValidateOperation(TRequest request);
 
     }
 }

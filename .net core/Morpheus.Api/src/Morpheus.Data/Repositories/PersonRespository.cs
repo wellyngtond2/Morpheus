@@ -1,43 +1,93 @@
-﻿using Morpheus.Core.Filters;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
+using Morpheus.Core.Filters;
 using Morpheus.Core.Models;
 using Morpheus.Core.Repositories;
 using Morpheus.Infrastructure.Infrastructure.Data;
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Morpheus.Data.Repositories
 {
     public class PersonRespository : Repository, IPersonRespository
     {
-        public PersonRespository(IDbConnector dbConnector) : base(dbConnector)
-        {
+        public PersonRespository(IDbConnector dbConnector) : base(dbConnector) { }
 
+        const string sqlBase = @"SELECT p.[Id]
+                                      ,p.[Name]
+                                      ,p.[Email]
+                                      ,p.[CreatedAt]
+                                 FROM [dbo].[Person] p 
+                                 WHERE 1 = 1 ";
+
+
+        public async Task CreateAsync(PersonModel person)
+        {
+            await base.Connection.InsertAsync(person, transaction: base.Transaction);
         }
 
-        public Task CreateAsync(PersonModel person)
+        public async Task UpdateAsync(PersonModel person)
         {
-            throw new NotImplementedException();
+            await base.Connection.UpdateAsync(person, transaction: base.Transaction);
         }
 
-        public Task DeleteAsync(string id)
+        public async Task<PersonModel> GetByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            string query = $"{sqlBase} AND p.[Id] = @Id ";
+
+            var pessoa = await base.Connection.QueryAsync<PersonModel>(query, new { Id = id }, transaction: base.Transaction);
+
+            return pessoa.FirstOrDefault();
         }
 
-        public Task<PersonModel> GetByIdAsync(string id)
+        public async Task<IEnumerable<PersonModel>> ListAsync(PersonFilter filter)
         {
-            throw new NotImplementedException();
+            var query = $"{sqlBase} @DynamicFilter";
+
+            var paramenters = new DynamicParameters();
+
+            ApplyFilter(query, filter, paramenters);
+
+            var pessoas = await base.Connection.QueryAsync<PersonModel>(query, paramenters, transaction: base.Transaction);
+
+            return pessoas;
         }
 
-        public Task<IEnumerable<PersonModel>> ListAsync(PersonFilter filter)
+        public async Task<bool> ExistsByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            string query = $"SELECT TOP 1 1 FROM [dbo].[Person] WHERE [Id] = @Id ";
+
+            var pessoa = await base.Connection.QueryAsync<bool>(query, new { Id = id }, transaction: base.Transaction);
+
+            return pessoa.FirstOrDefault();
         }
 
-        public Task UpdateAsync(PersonModel person)
+        public async Task DeleteAsync(PersonModel person)
         {
-            throw new NotImplementedException();
+            await base.Connection.DeleteAsync(person, transaction: base.Transaction);
+        }
+
+        private void ApplyFilter(string sql, PersonFilter filter, DynamicParameters paramenters)
+        {
+            var conditions = new Collection<string>();
+
+            if (!string.IsNullOrWhiteSpace(filter.Email))
+            {
+                conditions.Add("p.[Email] LIKE @Email");
+                paramenters.Add("Email", "%" + filter.Email + "%");
+            }
+
+            if (!string.IsNullOrWhiteSpace(filter.Name))
+            {
+                conditions.Add("p.[Name] LIKE @Name");
+                paramenters.Add("Name", "%" + filter.Name + "%");
+            }
+
+            var dynamicFilter = conditions.Any() ? $" AND {string.Join(" AND ", conditions)}" : "";
+
+            sql.Replace("@DynamicFilter", dynamicFilter);
         }
     }
 }

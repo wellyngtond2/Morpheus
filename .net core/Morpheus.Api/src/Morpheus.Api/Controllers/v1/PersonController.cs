@@ -72,7 +72,7 @@ namespace Morpheus.Api.Controllers.v1
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet("list")]
-        public async Task<ActionResult<ListOperationResponse<PersonResponse>>> List([FromQuery] PersonFilter filter)
+        public async Task<ActionResult<ListOperationResponse<PersonResponse>>> List([FromQuery] PersonFilterRequest filter)
         {
             var operationRequest = new ListPersonOperationRequest(filter);
             var operationResponse = await Bus.Send(operationRequest);

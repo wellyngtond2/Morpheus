@@ -1,33 +1,44 @@
-﻿using Morpheus.Common.Models;
+﻿using AutoMapper;
+using Morpheus.Common.Models;
+using Morpheus.Core.Models;
 using Morpheus.Core.OperationHandlers.Base;
 using Morpheus.Core.Repositories;
 using Morpheus.DataContracts.Base;
 using Morpheus.DataContracts.Person;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Morpheus.Core.OperationHandlers.PersonOperationHandler
 {
     public class CreatePersonOperationHandler : OperationHandler<CreatePersonOperationRequest, OperationResponse<PersonResponse>>
     {
-        public CreatePersonOperationHandler(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
+        public CreatePersonOperationHandler(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper) { }
 
+        protected async override Task<OperationResponse<PersonResponse>> ProcessOperationAsync(CreatePersonOperationRequest request)
+        {
+            var person = _mapper.Map<PersonModel>(request.Data);
+            person.CreatedAt = DateTime.UtcNow;
+            person.Id = Guid.NewGuid().ToString("N");
+
+            await _unitOfWork.PersonRespository.CreateAsync(person);
+
+            var response = _mapper.Map<PersonResponse>(person);
+
+            return OperationResponse.Created(response);
         }
 
-        protected override Task<OperationResponse<PersonResponse>> ProcessOperationAsync(CreatePersonOperationRequest request)
+        protected override Task<ICollection<Report>> ValidateOperation(CreatePersonOperationRequest request)
         {
-            throw new NotImplementedException();
-        }
+            ICollection<Report> response = new List<Report>();
 
-        protected override ICollection<Report> ValidateOperation(CreatePersonOperationRequest request)
-        {
-            var response = new List<Report>();
+            if (string.IsNullOrWhiteSpace(request.Data.Name))
+                response.Add(Report.Create(400, "Name cannot be null or empty"));
 
-            return response;
+            if (string.IsNullOrWhiteSpace(request.Data.Email))
+                response.Add(Report.Create(400, "Email cannot be null or empty"));
+
+            return Task.FromResult(response);
         }
     }
 }

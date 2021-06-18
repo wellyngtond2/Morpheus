@@ -4,11 +4,11 @@ namespace Morpheus.DataContracts.Person
 {
     public sealed class ListPersonOperationRequest : OperationRequest<ListOperationResponse<PersonResponse>>
     {
-        public ListPersonOperationRequest(PersonFilter filter)
+        public ListPersonOperationRequest(PersonFilterRequest filter)
         {
             Filter = filter;
         }
 
-        public PersonFilter Filter { get; set; }
+        public PersonFilterRequest Filter { get; set; }
     }
 }

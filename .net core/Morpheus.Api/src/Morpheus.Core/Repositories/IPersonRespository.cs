@@ -10,7 +10,8 @@ namespace Morpheus.Core.Repositories
         Task CreateAsync(PersonModel person);
         Task UpdateAsync(PersonModel person);
         Task<PersonModel> GetByIdAsync(string id);
+        Task<bool> ExistsByIdAsync(string id);
         Task<IEnumerable<PersonModel>> ListAsync(PersonFilter filter);
-        Task DeleteAsync(string id);
+        Task DeleteAsync(PersonModel person);
     }
 }

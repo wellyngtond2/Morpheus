@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Morpheus.Api.Extensions;
 using Morpheus.Api.IoC;
+using Morpheus.Core.Mapper;
 using Morpheus.Core.Repositories;
 using Morpheus.Data.Repositories;
 using System;
@@ -26,8 +27,8 @@ namespace Morpheus.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup));
-
             services.ConfigSwagger();
+            services.AddAutoMapper(typeof(CoreProfile));
 
             services.AddControllers();
         }

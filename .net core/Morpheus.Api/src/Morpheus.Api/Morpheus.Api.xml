@@ -24,7 +24,7 @@
             <param name="request"></param>
             <returns></returns>
         </member>
-        <member name="M:Morpheus.Api.Controllers.v1.PersonController.List(Morpheus.DataContracts.Person.PersonFilter)">
+        <member name="M:Morpheus.Api.Controllers.v1.PersonController.List(Morpheus.DataContracts.Person.PersonFilterRequest)">
             <summary>
             List of person
             </summary>
