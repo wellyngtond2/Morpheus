@@ -1,6 +1,6 @@
 # Morpheus
 
-## 01 - Run Follow database script
+## 01 - Run the following database script
 
 ```sh
 USE [master]
