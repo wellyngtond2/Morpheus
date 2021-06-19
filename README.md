@@ -5,7 +5,7 @@
 Morpheus is a project that uses the concept of several technologies and patterns, namely:
 - NodeJs
 - .Net Core C#
-- Rabbitmq
+- Rabbitmq with(EasyNetQ)
 - Mediator
 - Unit of Work
 - Dapper
