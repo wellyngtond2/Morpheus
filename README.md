@@ -1,5 +1,20 @@
 # Morpheus
 
+### What is Morpheus?
+
+Morpheus is a project that uses the concept of several technologies and patterns, namely:
+- NodeJs
+- .Net Core C#
+- Rabbitmq with(EasyNetQ)
+- Mediator
+- Unit of Work
+- Dapper
+- API Rest
+- Swagger
+- ...
+
+# Setup to start
+
 ## 01 - Run the following database script
 
 ```sh
@@ -30,4 +45,30 @@ GO
 #### 1º docker pull rabbitmq:3-management
 #### 2º docker run -d -p 15672:15672 -p 5672:5672 --name rabbit-test-for-medium rabbitmq:3-management
 
-## 03 - 
+## 03 - Enviroment variables
+
+#### 1º ADD the .env file into the nodeJS project with parameters from your email server like as bellow:
+
+--file .env--
+```sh
+EMAIL_SMTP="smtp.live.com"
+EMAIL_USER="your_email@hotmail.com"
+EMAIL_PASS="your_password"
+EMAIL_PORT=587
+```
+#### 2º Into the .net project on appsettings.json replace the connection string "dapperConnectionString" value.
+
+# Running applications
+
+## Open your preferred console terminal
+
+## NodeJs 
+- yarn start or npm start on root directory
+
+## .Net c#
+- dotnet run on Morpheus.Api project directory
+
+##### About Developer:
+
+Wellyngton A. Borges
+- [Linkedin ](https://www.linkedin.com/in/wellyngtonborges)
