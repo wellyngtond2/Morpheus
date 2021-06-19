@@ -60,8 +60,10 @@ EMAIL_PORT=587
 
 # Running applications
 
+## Open your preferred console terminal
+
 ## NodeJs 
-- yarn start or npm star on root directory
+- yarn start or npm start on root directory
 
 ## .Net c#
 - dotnet run on Morpheus.Api project directory
