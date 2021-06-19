@@ -25,4 +25,9 @@ PRIMARY KEY CLUSTERED
 GO
 ```
 
-## 02 - 
+## 02 - Install Docker and Run Rabbitmq image
+
+# 1º docker pull rabbitmq:3-management
+# 2º docker run -d -p 15672:15672 -p 5672:5672 --name rabbit-test-for-medium rabbitmq:3-management
+
+## 03 - 
