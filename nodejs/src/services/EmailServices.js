@@ -27,7 +27,7 @@ const sendEmail =  function(EmailRequest){
     console.log('success to send email', info);
   })
   .catch(error => {
-    console.log('erro ao enviar: ',error)
+    console.log('fail to try send: ',error)
     throw error;
   });
 
