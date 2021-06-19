@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Morpheus.Common.Messages;
 using Morpheus.Common.Models;
 using Morpheus.Core.OperationHandlers.Base;
 using Morpheus.Core.Repositories;
@@ -22,16 +23,15 @@ namespace Morpheus.Core.OperationHandlers.PersonOperationHandler
             return OperationResponse.Ok(response);
         }
 
-        protected async override Task<ICollection<Report>> ValidateOperation(GetPersonOperationRequest request)
+        protected async override Task ValidateOperation(GetPersonOperationRequest request)
         {
-            var response = new List<Report>();
+            if (string.IsNullOrEmpty(request.Id))
+                Reports.Add(Report.Create(MessageNotification.InvalidId));
 
             var exists = await _unitOfWork.PersonRespository.ExistsByIdAsync(request.Id);
 
             if (!exists)
-                response.Add(Report.Create(400, "Invalid person"));
-
-            return response;
+                Reports.Add(Report.Create(MessageNotification.PersonDoesNotExist));
         }
     }
 }

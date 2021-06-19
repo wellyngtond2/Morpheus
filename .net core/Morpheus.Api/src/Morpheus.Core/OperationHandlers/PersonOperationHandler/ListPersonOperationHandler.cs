@@ -25,11 +25,9 @@ namespace Morpheus.Core.OperationHandlers.PersonOperationHandler
             return OperationResponse.Ok(response);
         }
 
-        protected override Task<ICollection<Report>> ValidateOperation(ListPersonOperationRequest request)
+        protected override async Task ValidateOperation(ListPersonOperationRequest request)
         {
-            ICollection<Report> response = new List<Report>();
-
-            return Task.FromResult(response);
+            await Task.CompletedTask;
         }
     }
 }

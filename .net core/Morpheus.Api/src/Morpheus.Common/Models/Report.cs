@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Morpheus.Common.Extensions;
+using Morpheus.Common.Messages;
+using Newtonsoft.Json;
 
 namespace Morpheus.Common.Models
 {
@@ -17,6 +19,8 @@ namespace Morpheus.Common.Models
         public string Message { get; }
 
         public static Report Create(int code, string message) => new Report(code, null, message);
+
+        public static Report Create(MessageNotification message) => new Report((int)message, null, message.GetMessage());
 
         public static Report Create(int code, string field, string message) => new Report(code, field, message);
     }

@@ -4,13 +4,13 @@ using Morpheus.Core.Mapper;
 using Morpheus.Core.OperationHandlers.Base;
 using Morpheus.Core.Repositories;
 using Morpheus.DataContracts.Base;
-using Morpheus.UnitTest.Commons;
+using Morpheus.Test.Commons;
 using NSubstitute;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Morpheus.UnitTest.Core.OperationHandlers.Base
+namespace Morpheus.Test.Core.OperationHandlers.Base
 {
     public class BaseOperationHandlerTest<TOperationHandler, TRequest, TResponse> : IClassFixture<MapperFixture<CoreProfile>>
         where TOperationHandler : OperationHandler<TRequest, TResponse>

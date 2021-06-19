@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Morpheus.Common.Messages;
 using Morpheus.Common.Models;
 using Morpheus.Core.Events;
 using Morpheus.Core.Models;
@@ -37,17 +38,15 @@ namespace Morpheus.Core.OperationHandlers.PersonOperationHandler
             return OperationResponse.Created(response);
         }
 
-        protected override Task<ICollection<Report>> ValidateOperation(CreatePersonOperationRequest request)
+        protected override Task ValidateOperation(CreatePersonOperationRequest request)
         {
-            ICollection<Report> response = new List<Report>();
-
             if (string.IsNullOrWhiteSpace(request.Data.Name))
-                response.Add(Report.Create(400, "Name cannot be null or empty"));
+                Reports.Add(Report.Create(MessageNotification.NameCannotBeNull));
 
             if (string.IsNullOrWhiteSpace(request.Data.Email))
-                response.Add(Report.Create(400, "Email cannot be null or empty"));
+                Reports.Add(Report.Create(MessageNotification.EmailCannotBeNull));
 
-            return Task.FromResult(response);
+            return Task.FromResult(Reports);
         }
     }
 }

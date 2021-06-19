@@ -2,7 +2,7 @@
 using Morpheus.DataContracts.Person;
 
 
-namespace Morpheus.UnitTest.Fakes.Person
+namespace Morpheus.Test.Fakes.Person
 {
     public class CreatePersonOperationRequestFake : Faker<PersonRequest>
     {

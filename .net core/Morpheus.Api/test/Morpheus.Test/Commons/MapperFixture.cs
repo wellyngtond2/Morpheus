@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Morpheus.UnitTest.Commons
+namespace Morpheus.Test.Commons
 {
     public class MapperFixture<TProfile> where TProfile : Profile, new()
     {

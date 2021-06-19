@@ -18,11 +18,13 @@ namespace Morpheus.Core.OperationHandlers.Base
     {
         protected IUnitOfWork _unitOfWork { get; }
         protected IMapper _mapper { get; }
+        protected ICollection<Report> Reports { get; }
 
         protected OperationHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            Reports = new List<Report>();
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken)
@@ -31,16 +33,16 @@ namespace Morpheus.Core.OperationHandlers.Base
 
             try
             {
-                var validations = await ValidateOperation(request);
+                await ValidateOperation(request);
 
-                if (validations.Any())
+                if (Reports.Any())
                 {
-                    if (validations.Any(report => report.Code == 404))
+                    if (Reports.Any(report => report.Code == 404))
                     {
                         return OperationResponse.NotFound<TResponse>();
                     }
 
-                    return OperationResponse.UnprocessableEntity<TResponse>(validations);
+                    return OperationResponse.UnprocessableEntity<TResponse>(Reports);
                 }
 
                 _unitOfWork?.BeginTransaction();
@@ -70,7 +72,7 @@ namespace Morpheus.Core.OperationHandlers.Base
 
         protected abstract Task<TResponse> ProcessOperationAsync(TRequest request);
 
-        protected abstract Task<ICollection<Report>> ValidateOperation(TRequest request);
+        protected abstract Task ValidateOperation(TRequest request);
 
     }
 }

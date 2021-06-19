@@ -44,7 +44,7 @@ namespace Morpheus.DataContracts.Base
             new TResponse { State = OperationState.NotFound };
 
         public static TResponse UnprocessableEntity<TResponse>(ICollection<Report> reports) where TResponse : OperationResponse, new() =>
-            new TResponse { State = OperationState.NotFound, Reports = reports };
+            new TResponse { State = OperationState.UnprocessableEntity, Reports = reports };
 
         public static OperationResponse UnprocessableEntity(ICollection<Report> reports) =>
             new OperationResponse(OperationState.UnprocessableEntity, reports);
