@@ -7,6 +7,7 @@ using Morpheus.Infrastructure.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Morpheus.Data.Repositories
@@ -44,13 +45,14 @@ namespace Morpheus.Data.Repositories
 
         public async Task<IEnumerable<PersonModel>> ListAsync(PersonFilter filter)
         {
-            var query = $"{sqlBase} @DynamicFilter";
+            var query = new StringBuilder();
+            query.AppendLine($"{sqlBase} @DynamicFilter");
 
             var paramenters = new DynamicParameters();
 
             ApplyFilter(query, filter, paramenters);
 
-            var pessoas = await base.Connection.QueryAsync<PersonModel>(query, paramenters, transaction: base.Transaction);
+            var pessoas = await base.Connection.QueryAsync<PersonModel>(query.ToString(), paramenters, transaction: base.Transaction);
 
             return pessoas;
         }
@@ -69,7 +71,7 @@ namespace Morpheus.Data.Repositories
             await base.Connection.DeleteAsync(person, transaction: base.Transaction);
         }
 
-        private void ApplyFilter(string sql, PersonFilter filter, DynamicParameters paramenters)
+        private void ApplyFilter(StringBuilder sql, PersonFilter filter, DynamicParameters paramenters)
         {
             var conditions = new Collection<string>();
 
@@ -87,7 +89,7 @@ namespace Morpheus.Data.Repositories
 
             var dynamicFilter = conditions.Any() ? $" AND {string.Join(" AND ", conditions)}" : "";
 
-            sql.Replace("@DynamicFilter", dynamicFilter);
+            sql = sql.Replace("@DynamicFilter", dynamicFilter);
         }
     }
 }

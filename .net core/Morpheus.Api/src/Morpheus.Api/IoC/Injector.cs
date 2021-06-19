@@ -1,9 +1,13 @@
 ﻿using Autofac;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using Morpheus.Core.Factory;
 using Morpheus.Core.Repositories;
+using Morpheus.Core.Services;
 using Morpheus.Data.Connector;
 using Morpheus.Data.Repositories;
+using Morpheus.ExternalServices.Services.Message;
+using Morpheus.ExternalServices.Services.Message.Factory;
 using Morpheus.Infrastructure.Infrastructure.Data;
 using System;
 using System.Linq;
@@ -15,10 +19,13 @@ namespace Morpheus.Api.IoC
     {
         public static void RegisterIoc(ContainerBuilder builder, IConfiguration configuration)
         {
-
+            builder.RegisterType<RabbitMqService>().As<IEmailNotificationService>();
+            builder.RegisterType<MessageFactory>().As<IMessageFactory>();
+            
             var assemblies = new[]
             {
                 Assembly.Load("Morpheus.Api"),
+                Assembly.Load("Morpheus.Core"),
                 typeof(IUnitOfWork).Assembly,
                 typeof(UnitOfWork).Assembly,
             };

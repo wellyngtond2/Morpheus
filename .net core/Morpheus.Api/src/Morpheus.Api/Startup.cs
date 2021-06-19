@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Morpheus.Api.Extensions;
 using Morpheus.Api.IoC;
 using Morpheus.Core.Mapper;
+using Morpheus.Core.OperationHandlers.Base;
 using Morpheus.Core.Repositories;
 using Morpheus.Data.Repositories;
 using System;
@@ -26,7 +27,7 @@ namespace Morpheus.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMediatR(typeof(Startup));
+            services.AddMediatR(typeof(OperationHandler<,>).Assembly);
             services.ConfigSwagger();
             services.AddAutoMapper(typeof(CoreProfile));
 

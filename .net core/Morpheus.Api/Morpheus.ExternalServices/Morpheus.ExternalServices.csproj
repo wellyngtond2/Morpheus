@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EasyNetQ" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Morpheus.Common\Morpheus.Common.csproj" />
+    <ProjectReference Include="..\src\Morpheus.Core\Morpheus.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MediatR;
 using Morpheus.Common.Models;
+using Morpheus.Core.Events;
 using Morpheus.Core.Models;
 using Morpheus.Core.OperationHandlers.Base;
 using Morpheus.Core.Repositories;
@@ -13,7 +15,12 @@ namespace Morpheus.Core.OperationHandlers.PersonOperationHandler
 {
     public class CreatePersonOperationHandler : OperationHandler<CreatePersonOperationRequest, OperationResponse<PersonResponse>>
     {
-        public CreatePersonOperationHandler(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper) { }
+        private readonly IMediator _mediator;
+
+        public CreatePersonOperationHandler(IUnitOfWork unitOfWork, IMapper mapper, IMediator mediator) : base(unitOfWork, mapper)
+        {
+            _mediator = mediator;
+        }
 
         protected async override Task<OperationResponse<PersonResponse>> ProcessOperationAsync(CreatePersonOperationRequest request)
         {
@@ -22,6 +29,8 @@ namespace Morpheus.Core.OperationHandlers.PersonOperationHandler
             person.Id = Guid.NewGuid().ToString("N");
 
             await _unitOfWork.PersonRespository.CreateAsync(person);
+
+            await _mediator.Publish(new NewPersonEmailNotification(person));
 
             var response = _mapper.Map<PersonResponse>(person);
 

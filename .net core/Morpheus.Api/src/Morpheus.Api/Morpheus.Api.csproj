@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Morpheus.ExternalServices\Morpheus.ExternalServices.csproj" />
     <ProjectReference Include="..\Morpheus.Core\Morpheus.Core.csproj" />
     <ProjectReference Include="..\Morpheus.DataContracts\Morpheus.DataContracts.csproj" />
     <ProjectReference Include="..\Morpheus.Data\Morpheus.Data.csproj" />

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31105.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Presentation", "01-Presentation", "{A59F8E9F-E1E0-4957-AFA1-33D1A7C5E218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpheus.Api", "src\Morpheus.Api\Morpheus.Api.csproj", "{3ECB69F7-1140-4BC8-8407-8B7E2261D814}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.Api", "src\Morpheus.Api\Morpheus.Api.csproj", "{3ECB69F7-1140-4BC8-8407-8B7E2261D814}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Core", "02-Core", "{5642E348-B5C1-4F3B-ABBB-7D29329080CB}"
 EndProject
@@ -13,15 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Data", "03-Data", "{2254
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-Infra", "04-Infra", "{98BA739C-9707-4E69-AE61-F26E8FEFE399}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpheus.Common", "src\Morpheus.Common\Morpheus.Common.csproj", "{3AEBD5C2-9512-445E-9756-BFD8B8ACE1DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.Common", "src\Morpheus.Common\Morpheus.Common.csproj", "{3AEBD5C2-9512-445E-9756-BFD8B8ACE1DC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.DataContracts", "src\Morpheus.DataContracts\Morpheus.DataContracts.csproj", "{D917E730-3C46-4E4F-8067-0F3F5593272B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpheus.Core", "src\Morpheus.Core\Morpheus.Core.csproj", "{7D7942AD-898F-4942-8C8D-4019BA610F38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.Core", "src\Morpheus.Core\Morpheus.Core.csproj", "{7D7942AD-898F-4942-8C8D-4019BA610F38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpheus.Infrastructure", "src\Morpheus.Infrastructure\Morpheus.Infrastructure.csproj", "{57AF9B6B-907E-428B-963D-EF2E3386A3B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.Infrastructure", "src\Morpheus.Infrastructure\Morpheus.Infrastructure.csproj", "{57AF9B6B-907E-428B-963D-EF2E3386A3B5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.Data", "src\Morpheus.Data\Morpheus.Data.csproj", "{B2E9A8A6-2D5B-4D26-95ED-61DF7471B993}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{3028A74A-DB0F-4B92-8C27-2B90117CF5FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Morpheus.UnitTest", "test\Morpheus.UnitTest\Morpheus.UnitTest.csproj", "{BC4FAB23-2E69-43F3-8127-440671E9A25C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morpheus.ExternalServices", "Morpheus.ExternalServices\Morpheus.ExternalServices.csproj", "{207BA7D4-E67B-424E-814C-01931D382D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +59,14 @@ Global
 		{B2E9A8A6-2D5B-4D26-95ED-61DF7471B993}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2E9A8A6-2D5B-4D26-95ED-61DF7471B993}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2E9A8A6-2D5B-4D26-95ED-61DF7471B993}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC4FAB23-2E69-43F3-8127-440671E9A25C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4FAB23-2E69-43F3-8127-440671E9A25C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4FAB23-2E69-43F3-8127-440671E9A25C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4FAB23-2E69-43F3-8127-440671E9A25C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{207BA7D4-E67B-424E-814C-01931D382D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{207BA7D4-E67B-424E-814C-01931D382D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{207BA7D4-E67B-424E-814C-01931D382D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{207BA7D4-E67B-424E-814C-01931D382D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +78,8 @@ Global
 		{7D7942AD-898F-4942-8C8D-4019BA610F38} = {5642E348-B5C1-4F3B-ABBB-7D29329080CB}
 		{57AF9B6B-907E-428B-963D-EF2E3386A3B5} = {98BA739C-9707-4E69-AE61-F26E8FEFE399}
 		{B2E9A8A6-2D5B-4D26-95ED-61DF7471B993} = {2254EEAC-0D8A-4162-BA69-A235B531E3A2}
+		{BC4FAB23-2E69-43F3-8127-440671E9A25C} = {3028A74A-DB0F-4B92-8C27-2B90117CF5FD}
+		{207BA7D4-E67B-424E-814C-01931D382D64} = {98BA739C-9707-4E69-AE61-F26E8FEFE399}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3E1C9BC-577D-459B-A5C4-96B54C94A419}
