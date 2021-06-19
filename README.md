@@ -58,6 +58,13 @@ EMAIL_PORT=587
 ```
 #### 2º Into the .net project on appsettings.json replace the connection string "dapperConnectionString" value.
 
+# Running applications
+
+## NodeJs 
+- yarn start or npm star on root directory
+
+## .Net c#
+- dotnet run on Morpheus.Api project directory
 
 ##### About Developer:
 
