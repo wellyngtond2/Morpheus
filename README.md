@@ -1,5 +1,8 @@
 # Morpheus
 
+
+#  *** Setup to start *** 
+
 ## 01 - Run the following database script
 
 ```sh
@@ -41,4 +44,4 @@ EMAIL_USER="your_email@hotmail.com"
 EMAIL_PASS="your_password"
 EMAIL_PORT=587
 ```
-#### 2º Second one into the .net project on appsettings.json replace the connection string "dapperConnectionString" value.
+#### 2º Into the .net project on appsettings.json replace the connection string "dapperConnectionString" value.
