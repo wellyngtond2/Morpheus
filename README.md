@@ -30,4 +30,15 @@ GO
 #### 1º docker pull rabbitmq:3-management
 #### 2º docker run -d -p 15672:15672 -p 5672:5672 --name rabbit-test-for-medium rabbitmq:3-management
 
-## 03 - 
+## 03 - Enviroment variables
+
+#### 1º ADD the .env file into the nodeJS project with parameters from your email server like as bellow:
+
+--file .env--
+```sh
+EMAIL_SMTP="smtp.live.com"
+EMAIL_USER="your_email@hotmail.com"
+EMAIL_PASS="your_password"
+EMAIL_PORT=587
+```
+#### 2º Second one into the .net project on appsettings.json replace the connection string "dapperConnectionString" value.
