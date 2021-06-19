@@ -1,7 +1,19 @@
 # Morpheus
 
+### What is Morpheus?
 
-#  *** Setup to start *** 
+Morpheus is a project that uses the concept of several technologies and patterns, namely:
+- NodeJs
+- .Net Core C#
+- Rabbitmq
+- Mediator
+- Unit of Work
+- Dapper
+- API Rest
+- Swagger
+- ...
+
+# Setup to start
 
 ## 01 - Run the following database script
 
@@ -45,3 +57,9 @@ EMAIL_PASS="your_password"
 EMAIL_PORT=587
 ```
 #### 2º Into the .net project on appsettings.json replace the connection string "dapperConnectionString" value.
+
+
+##### About Developer:
+
+Wellyngton A. Borges
+- [Linkedin ](https://www.linkedin.com/in/wellyngtonborges)
